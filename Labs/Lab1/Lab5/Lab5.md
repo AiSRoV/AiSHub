@@ -32,12 +32,12 @@
 
 1. Программный код
     ```cpp
-   #include <fstream>
-#include <iostream>
-#include <cstring>
-#include <string>
+    #include <fstream>
+    #include <iostream>
+    #include <cstring>
+    #include <string>
 
-int to_int(std::string arr) {
+    int to_int(std::string arr) {
     int res = 0;
     int temp = 0;
     while (isdigit(arr[temp])) {
@@ -46,80 +46,80 @@ int to_int(std::string arr) {
         temp++;
     }
     return res;
-}
+    }
 
-enum pclass {
-    NONE1 = 0,
-    FIRST,
-    SECOND,
-    THIRD
-};
+    enum pclass {
+        NONE1 = 0,
+        FIRST,
+        SECOND,
+        THIRD
+    };
 
-enum sex {
-    NONE2 = 0,
-    MALE,
-    FEMALE
-};
+    enum sex {
+        NONE2 = 0,
+        MALE,
+        FEMALE
+    };
 
-enum state {
-    NONE3 = 0,
-    C,
-    Q,
-    S
-};
+    enum state {
+        NONE3 = 0,
+        C,
+        Q,
+        S
+    };
 
-struct people {
-    int id = 0;
-    int surv = 0;
-    pclass people_pclass = NONE1;
-    sex people_sex = NONE2;
-    int age = 0;
-    state people_state = NONE3;
-};
+    struct people {
+        int id = 0;
+        int surv = 0;
+        pclass people_pclass = NONE1;
+        sex people_sex = NONE2;
+        int age = 0;
+        state people_state = NONE3;
+    };
 
-void parse(std::ifstream* in, people* man) {
-    std::string str;
-    for (int i = 0; i < 12; i++) {
-        if (getline(*in, str, ','))
-            switch (i) {
-            case 0:
-                if (str.length())
-                    man->id = to_int(str);
-                break;
-            case 1:
-                if (str.length())
-                    man->surv = to_int(str) + 1;
-                break;
-            case 2:
-                if (str.length())
-                    switch (to_int(str)) {
-                    case 1:
-                        man->people_pclass = FIRST;
-                        break;
-                    case 2:
-                        man->people_pclass = SECOND;
-                        break;
-                    case 3:
-                        man->people_pclass = THIRD;
-                        break;
-                    }
-                break;
-            case 5:
-                if (str.length())
-                    switch (str[0]) {
-                    case 'm':
-                        man->people_sex = MALE;
-                        break;
-                    case 'f':
-                        man->people_sex = FEMALE;
-                        break;
-                    }
-                break;
-            case 6:
-                if (str.length())
-                    man->age = to_int(str);
-                break;
-            }
+    void parse(std::ifstream* in, people* man) {
+        std::string str;
+        for (int i = 0; i < 12; i++) {
+            if (getline(*in, str, ','))
+                switch (i) {
+                case 0:
+                    if (str.length())
+                        man->id = to_int(str);
+                    break;
+                case 1:
+                    if (str.length())
+                        man->surv = to_int(str) + 1;
+                    break;
+                case 2:
+                    if (str.length())
+                        switch (to_int(str)) {
+                        case 1:
+                            man->people_pclass = FIRST;
+                            break;
+                        case 2:
+                            man->people_pclass = SECOND;
+                            break;
+                        case 3:
+                            man->people_pclass = THIRD;
+                            break;
+                        }
+                    break;
+                case 5:
+                    if (str.length())
+                        switch (str[0]) {
+                        case 'm':
+                            man->people_sex = MALE;
+                            break;
+                        case 'f':
+                            man->people_sex = FEMALE;
+                            break;
+                        }
+                    break;
+                case 6:
+                    if (str.length())
+                        man->age = to_int(str);
+                    break;
+                }
 
     }
     getline(*in, str, '\r');
@@ -135,18 +135,18 @@ void parse(std::ifstream* in, people* man) {
             man->people_state = C;
             break;
         }
-}
+    }
 
-bool is_zero(people* man) {
-    return man->age || man->surv || man->people_state || man->people_sex || man->people_pclass || man->id;
-}
+    bool is_zero(people* man) {
+        return man->age || man->surv || man->people_state || man->people_sex || man->people_pclass || man->id;
+    }
 
-int main() {
-    std::ifstream in("/home/canned_dead/Документы/CLionProjects/prog/cmake-build-debug/train.csv");
-    char buf[250];
-    int surv = 0, first = 0, second = 0, third = 0, male = 0, female = 0;
-    int age = 0, m_age = 0, w_age = 0, all_m = 0, all_w = 0;
-    int q = 0, s = 0, c = 0;
+    int main() {
+        std::ifstream in("/home/canned_dead/Документы/CLionProjects/prog/cmake-build-debug/train.csv");
+        char buf[250];
+        int surv = 0, first = 0, second = 0, third = 0, male = 0, female = 0;
+        int age = 0, m_age = 0, w_age = 0, all_m = 0, all_w = 0;
+        int q = 0, s = 0, c = 0;
 
     in.getline(buf, 250, '\r');
 
@@ -221,7 +221,7 @@ int main() {
     else if (s == std::max(q, std::max(s, c))) std::cout << "S";
 
     return 0;
-}
+    }
     ```
 2. Результат рассчета
 
