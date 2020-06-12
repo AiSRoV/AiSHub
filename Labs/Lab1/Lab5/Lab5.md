@@ -246,7 +246,7 @@
    Ср. возраст 29   Ср.в.м 31   Ср.в.ж 28
    SOUTHAMPTON 
     ```
-    Сам файл: [train.txt](Labs/Lab1/Lab5/train.txt)
+    Сам файл: [train](https://github.com/AiSRoV/AiSHub/blob/master/Labs/Lab1/Lab5/train.txt)
    
 **Вывод**: в ходе выполнения лабораторной работы были получены навыки
 * работы с CSV файлами;
