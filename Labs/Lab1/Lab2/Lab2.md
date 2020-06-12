@@ -92,9 +92,9 @@ int main(){
 
     for (int i = 0; i <= (x2 -x1)/d; i ++, x += d){
 
-        if (x <= a) z = abs(x);
-        else if ((a < x)&& (x < b)) z = abs(x) + cos(x);
-        else if( x >= b) z = tan(x);
+        if (x <= a) z = abs(x) + sin(x);
+        else if ((a < x) && (x < b)) z = log(abs(x)) / log(3);
+        else if (x >= b) z = tan(x);
 
         if (flag) {
             xma = z;
