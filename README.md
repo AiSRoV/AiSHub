@@ -6,7 +6,7 @@
 | [№2](Problems/№2.cpp) | [ЛР2](Labs/Lab1/Lab2/Lab2.md)|
 | [№3](Problems/№3.cpp) | |
 | [№4](Problems/№4.cpp) | [ЛР4](Labs/Lab1/Lab4/Lab4.md)|
-| [№5](Problems/№5.cpp) |
+| [№5](Problems/№5.cpp) | [ЛР5](Labs/Lab1/Lab5/Lab5.md)|
 | [№6](Problems/№6.cpp) |
 | [№7](Problems/№7.cpp) |
 | [№8](Problems/№8.cpp) |
