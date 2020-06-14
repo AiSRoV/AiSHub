@@ -3,6 +3,17 @@
 
 using namespace std;
 
+bool approximatelyEqualAbsRel(double a, double b, double absEpsilon, double relEpsilon)
+{
+    // Проверяем числа на их близость - это нужно в случаях, когда сравниваемые числа являются нулевыми или около нуля
+    double diff = fabs(a - b);
+    if (diff <= absEpsilon)
+        return true;
+
+    // В противном случае, возвращаемся к алгоритму Кнута
+    return diff <= ((fabs(a) < fabs(b) ? fabs(b) : fabs(a)) * relEpsilon);
+}
+
 int main() {
 
     double a, b, x1, x2, d, z, xma, xmi, x;
@@ -18,9 +29,11 @@ int main() {
 
     for (int i = 0; i <= (x2 - x1) / d; i++, x += d) {
 
-        if (x <= a) z = abs(x) + sin(x);
+        if (approximatelyEqualAbsRel(x, a, 1e-12, 1e-8)) z = abs(x) + sin(x);
+        else if (x < a) z = abs(x) + sin(x);
         else if ((a < x) && (x < b)) z = log(abs(x)) / log(3);
-        else if (x >= b) z = tan(x);
+        else if (approximatelyEqualAbsRel(x, b, 1e-12, 1e-8)) z = tan(x);
+        else if (x > b) z = tan(x);
 
         if (flag) {
             xma = z;
