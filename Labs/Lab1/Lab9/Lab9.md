@@ -260,7 +260,7 @@ DoorStatus LockController::lockDoor()
   ![](Scrins/2.PNG)<br/>
   Рис.2. Итог тестирования
 
-Ссылка на файл с кодом: []()
+Ссылка на файл с кодом: [tst_testdivisionbyzero.h](tst_testdivisionbyzero.h)
 
 #### Ввывод
 
