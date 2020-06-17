@@ -238,16 +238,16 @@ TEST(Calculator, new_pass_true){
   Рис.1. Итог тестирования
   
 3. Исправление ошибки:
-  <br/>
-  До<br/>
+  
+  До:
   ```C++
 DoorStatus LockController::lockDoor()
 {
     return latch->open();
 }
 ```
-  <br/>
-  После<br/>
+
+  После:
   ```C++
 DoorStatus LockController::lockDoor()
 {
