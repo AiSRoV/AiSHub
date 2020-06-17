@@ -10,7 +10,7 @@
 | [№6](Problems/№6.cpp) |
 | [№7](Problems/№7.cpp) | [ЛР7](Labs/Lab1/Lab7/Lab7.md)|
 | [№8](Problems/№8.cpp) | [ЛР8](Labs/Lab1/Lab8/Lab8.md)|
-| [№9](Problems/№9.cpp) |
+| [№9](Problems/№9.cpp) | [ЛР9](Labs/Lab1/Lab9/Lab9.md)|
 | [№10](Problems/№10.cpp) |
 | [№11](Problems/№11.cpp) |
 | [№12](Problems/№12.cpp) |
