@@ -7,7 +7,7 @@
 | [№3](Problems/№3.cpp) | [ЛР3](Labs/Lab1/Lab3/Lab3.md)|
 | [№4](Problems/№4.cpp) | [ЛР4](Labs/Lab1/Lab4/Lab4.md)|
 | [№5](Problems/№5.cpp) | [ЛР5](Labs/Lab1/Lab5/Lab5.md)|
-| [№6](Problems/№6.cpp) |
+| [№6](Problems/№6.cpp) | [ЛР6](Labs/Lab1/Lab6/Lab6.md)|
 | [№7](Problems/№7.cpp) | [ЛР7](Labs/Lab1/Lab7/Lab7.md)|
 | [№8](Problems/№8.cpp) | [ЛР8](Labs/Lab1/Lab8/Lab8.md)|
 | [№9](Problems/№9.cpp) | [ЛР9](Labs/Lab1/Lab9/Lab9.md)|
