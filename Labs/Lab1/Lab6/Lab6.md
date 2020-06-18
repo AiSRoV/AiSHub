@@ -55,14 +55,6 @@ void replace(std::string& str, const std::string from, std::string  to, int key)
     str.replace(startPos, from.length(), to);
 }
 
-/* "id": 1510514,
-    "name": "Moscow",
-    "state": "",
-    "country": "RU",
-    "coord": {
-      "lon": 88.489723,
-      "lat": 55.01778*/
-
       //виджет
 void gen_response(const httplib::Request& req, httplib::Response& result) {
     std::string widget;
