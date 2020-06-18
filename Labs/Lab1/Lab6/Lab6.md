@@ -47,7 +47,7 @@ using json = nlohmann::json;
 void replace(std::string& str, const std::string from, std::string  to, int key)
 {
     if (key == 1) to = to.substr(1, 10);
-    else if(key==2) to = to.substr(1, 3);
+    else if (key == 2) to = to.substr(1, 3);
 
     int startPos = str.find(from);
     if (startPos == std::string::npos) return;
@@ -56,25 +56,25 @@ void replace(std::string& str, const std::string from, std::string  to, int key)
 }
 
 /* "id": 1510514,
-    "name": "Belogorsk",
+    "name": "Moscow",
     "state": "",
     "country": "RU",
     "coord": {
       "lon": 88.489723,
       "lat": 55.01778*/
 
-//виджет
-void gen_response(const httplib::Request& req, httplib::Response& result) {  
+      //виджет
+void gen_response(const httplib::Request& req, httplib::Response& result) {
     std::string widget;
     httplib::Client cli("api.openweathermap.org", 80);
-    auto res = cli.Get("/data/2.5/forecast?id=1510514&units=metric&APPID=852f923d23e30df95c2b94d2e5cdbf6b");
+    auto res = cli.Get("/data/2.5/forecast?id=524901&units=metric&APPID=022f7d382526ba03bb93602e96fe8d2a");
     json jsn;
-   
+
     if (res && res->status == 200) jsn = json::parse(res->body);
     std::ifstream stream("informer_template.html");
     if (!stream) { std::cout << "NoOpen"; }
     getline(stream, widget, '\0');
-   
+
     stream.close();
 
 
@@ -83,7 +83,7 @@ void gen_response(const httplib::Request& req, httplib::Response& result) {
     {
 
         int start = jsn["list"][0]["dt"];
-        for (int i = 0; i < 40; i++) // 5*8=40
+        for (int i = 0; i < 40; i++) 
         {
             if (jsn["list"][i]["dt"] >= start)
             {
