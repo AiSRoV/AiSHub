@@ -44,8 +44,7 @@
 
 using json = nlohmann::json;
 
-void replace(std::string& str, const std::string from, std::string  to, int key)
-{
+void general(std::string& str, const std::string from, std::string  to, int key) {
     if (key == 1) to = to.substr(1, 10);
     else if (key == 2) to = to.substr(1, 3);
 
@@ -55,11 +54,10 @@ void replace(std::string& str, const std::string from, std::string  to, int key)
     str.replace(startPos, from.length(), to);
 }
 
-      //виджет
-void gen_response(const httplib::Request& req, httplib::Response& result) {
+void pic(const httplib::Request& req, httplib::Response& result) {
     std::string widget;
-    httplib::Client cli("api.openweathermap.org", 80);
-    auto res = cli.Get("/data/2.5/forecast?id=524901&units=metric&APPID=022f7d382526ba03bb93602e96fe8d2a");
+    httplib::Client arch("api.openweathermap.org", 80);
+    auto res = arch.Get("/data/2.5/forecast?id=524901&units=metric&APPID=022f7d382526ba03bb93602e96fe8d2a");
     json jsn;
 
     if (res && res->status == 200) jsn = json::parse(res->body);
@@ -70,18 +68,14 @@ void gen_response(const httplib::Request& req, httplib::Response& result) {
     stream.close();
 
 
-    replace(widget, "{city.name}", jsn["city"]["name"].dump(), 1);
-    for (int i = 0; i < 5; i++)
-    {
-
+    general(widget, "{city.name}", jsn["city"]["name"].dump(), 1);
+    for (int i = 0; i < 5; i++) {
         int start = jsn["list"][0]["dt"];
-        for (int i = 0; i < 40; i++) 
-        {
-            if (jsn["list"][i]["dt"] >= start)
-            {
-                replace(widget, "{list.dt}", jsn["list"][i]["dt_txt"].dump(), 1);
-                replace(widget, "{list.weather.icon}", jsn["list"][i]["weather"][0]["icon"].dump(), 2);
-                replace(widget, "{list.main.temp}", jsn["list"][i]["main"]["temp"].dump(), 0);
+        for (int i = 0; i < 40; i++) {
+            if (jsn["list"][i]["dt"] >= start) {
+                general(widget, "{list.dt}", jsn["list"][i]["dt_txt"].dump(), 1);
+                general(widget, "{list.weather.icon}", jsn["list"][i]["weather"][0]["icon"].dump(), 2);
+                general(widget, "{list.main.temp}", jsn["list"][i]["main"]["temp"].dump(), 0);
                 start += 86400;
             }
         }
@@ -90,11 +84,10 @@ void gen_response(const httplib::Request& req, httplib::Response& result) {
 }
 
 
-int main()
-{
-    httplib::Server svr;
-    svr.Get("/", gen_response);
-    svr.listen("localhost", 3000);
+int main() {
+    httplib::Server weather;
+    weather.Get("/", pic);
+    weather.listen("localhost", 3000);
 }
 
 ```
