@@ -30,7 +30,7 @@
 
 #### Ход работы
 
-1. **API ключ от openweathermap.org:** 022f7d382526ba03bb93602e96fe8d2a<br/>
+1. **Выданный API ключ:** 022f7d382526ba03bb93602e96fe8d2a<br/>
 
 2. **Основной код программы:**
 
@@ -64,7 +64,7 @@ void gen_response(const httplib::Request& req, httplib::Response& result) {
 
     if (res && res->status == 200) jsn = json::parse(res->body);
     std::ifstream stream("informer_template.html");
-    if (!stream) { std::cout << "NoOpen"; }
+    if (!stream) { std::cout << "Failed!"; }
     getline(stream, widget, '\0');
 
     stream.close();
