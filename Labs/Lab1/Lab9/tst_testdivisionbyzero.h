@@ -40,8 +40,8 @@ TEST (Calculator, Door_close){
     MockIKeypad keypad;
     LockController controller=LockController(&keypad, &latch);
     EXPECT_CALL(latch,getDoorStatus()).Times(1);
-    bool CheckDoor = controller.isDoorOpen();
-    bool Check = CheckDoor;
+    bool Door = controller.isDoorOpen();
+    bool Check = Door;
     Check = false;
     EXPECT_FALSE(Check);
 }
@@ -50,10 +50,10 @@ TEST (Calculator, Door_close){
 TEST(Calculator, Door_open){
     MockILatch latch;
     MockIKeypad keypad;
-    bool CheckDoor;
+    bool Door;
     LockController controller=LockController(&keypad, &latch);
     EXPECT_CALL(latch, getDoorStatus()).Times(1);
-    CheckDoor = controller.isDoorOpen();
+    Door = controller.isDoorOpen();
     EXPECT_TRUE(CheckDoor);
 }
 
@@ -61,20 +61,20 @@ TEST(Calculator, Door_open){
 TEST(Calculator, latch_open){
     MockILatch latch;
     MockIKeypad keypad;
-    bool CheckDoor;
+    bool Door;
     LockController controller=LockController(&keypad, &latch);
     EXPECT_CALL(latch, getDoorStatus()).Times(1).WillOnce (Return(DoorStatus::OPEN));
-    CheckDoor = controller.isDoorOpen();
+    Door = controller.isDoorOpen();
     EXPECT_TRUE(CheckDoor);
 }
 
 //Тест 5
 TEST(Calculator, latch_close){
     MockIKeypad keypad;
-        MockILatch latch;
-        LockController lc = LockController(&keypad, &latch);
-        EXPECT_CALL(latch, close())//err.Times(1).WillOnce(Return(DoorStatus::CLOSE));
-        EXPECT_EQ(lc.lockDoor(), DoorStatus::CLOSE);
+    MockILatch latch;
+    LockController lc = LockController(&keypad, &latch);
+    EXPECT_CALL(latch, close());//err.Times(1).WillOnce(Return(DoorStatus::CLOSE));
+    EXPECT_EQ(lc.lockDoor(), DoorStatus::CLOSE);
 }
 
 //Тест 6
@@ -82,10 +82,10 @@ TEST(Calculator,HardWareStatus_OK){
     MockILatch latch;
     MockIKeypad keypad;
     LockController controller=LockController(&keypad, &latch);
-    EXPECT_CALL(latch, isActive())//НУ СОЗДАНЫ ТИП))
+    EXPECT_CALL(latch, isActive())
            .Times(1)
       .WillOnce(Return(1));
-    EXPECT_CALL(keypad, isActive())//НУ СОЗДАНЫ ТИП))
+    EXPECT_CALL(keypad, isActive())
            .Times(1)
      .WillOnce(Return(1));
  HardWareStatus Status = controller.hardWareCheck();
@@ -123,10 +123,10 @@ TEST(Calculator,True_password){
     MockILatch latch;
     MockIKeypad keypad;
     bool CheckPassword;
-    //act
+  
     LockController controller=LockController(&keypad, &latch);
     PasswordResponse response {PasswordResponse::Status::OK,"0000"};
-    //assert
+ 
     EXPECT_CALL(keypad, requestPassword())
                .Times(1)
                .WillOnce(Return(response));
@@ -139,10 +139,10 @@ TEST(Calculator,False_password){
     MockILatch latch;
     MockIKeypad keypad;
     bool CheckPassword;
-    //act
+  
     LockController controller=LockController(&keypad, &latch);
-    PasswordResponse response {PasswordResponse::Status::OK,"9999"};
-    //assert
+    PasswordResponse response {PasswordResponse::Status::OK,"1234"};
+
     EXPECT_CALL(keypad, requestPassword())
                .Times(1)
                .WillOnce(Return(response));
@@ -154,7 +154,7 @@ TEST(Calculator,False_password){
 TEST(Calculator,old_pass_true){
     MockILatch latch;
         MockIKeypad keypad;
-        bool CheckPassword;
+        bool Password;
         LockController controller=LockController(&keypad, &latch);
 
         PasswordResponse oldPass{PasswordResponse::Status::OK,"0000"};
@@ -168,8 +168,8 @@ TEST(Calculator,old_pass_true){
 
          EXPECT_CALL(keypad, requestPassword()).Times(1).WillOnce(Return(newPass));
 
-         CheckPassword = controller.isCorrectPassword();
-          EXPECT_TRUE(CheckPassword);
+         Password = controller.isCorrectPassword();
+          EXPECT_TRUE(Password);
 }
 
 //Тест 12
@@ -177,9 +177,9 @@ TEST(Calculator, new_pass_true){
     MockILatch latch;
     MockIKeypad keypad;
     LockController controller=LockController(&keypad, &latch);
-    bool CheckPassword;
+    bool Password;
     PasswordResponse del_Pass{PasswordResponse::Status::OK,"0000"};
-    PasswordResponse old_Pass{PasswordResponse::Status::OK,"9999"};
+    PasswordResponse old_Pass{PasswordResponse::Status::OK,"1234"};
     PasswordResponse new_Pass{PasswordResponse::Status::OK,"9876"};
     EXPECT_CALL(keypad, requestPassword())
             .Times(2)
@@ -192,7 +192,7 @@ TEST(Calculator, new_pass_true){
       EXPECT_CALL(keypad, requestPassword()).Times(2).WillOnce(Return(old_Pass)).WillOnce(Return(new_Pass));
              controller.resetPassword();
        EXPECT_CALL(keypad, requestPassword()).Times(1).WillOnce(Return(new_Pass));
-       CheckPassword = controller.isCorrectPassword();
-        EXPECT_TRUE(CheckPassword);
+       Password = controller.isCorrectPassword();
+        EXPECT_TRUE(Password);
 }
 #endif // TST_TESTDIVISIONBYZERO_H
