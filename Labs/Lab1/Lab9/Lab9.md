@@ -175,7 +175,7 @@ TEST(Calculator,False_password){
     bool CheckPassword;
   
     LockController controller=LockController(&keypad, &latch);
-    PasswordResponse response {PasswordResponse::Status::OK,"9999"};
+    PasswordResponse response {PasswordResponse::Status::OK,"1234"};
 
     EXPECT_CALL(keypad, requestPassword())
                .Times(1)
@@ -211,9 +211,9 @@ TEST(Calculator, new_pass_true){
     MockILatch latch;
     MockIKeypad keypad;
     LockController controller=LockController(&keypad, &latch);
-    bool CheckPassword;
+    bool Password;
     PasswordResponse del_Pass{PasswordResponse::Status::OK,"0000"};
-    PasswordResponse old_Pass{PasswordResponse::Status::OK,"9999"};
+    PasswordResponse old_Pass{PasswordResponse::Status::OK,"1234"};
     PasswordResponse new_Pass{PasswordResponse::Status::OK,"9876"};
     EXPECT_CALL(keypad, requestPassword())
             .Times(2)
@@ -226,8 +226,8 @@ TEST(Calculator, new_pass_true){
       EXPECT_CALL(keypad, requestPassword()).Times(2).WillOnce(Return(old_Pass)).WillOnce(Return(new_Pass));
              controller.resetPassword();
        EXPECT_CALL(keypad, requestPassword()).Times(1).WillOnce(Return(new_Pass));
-       CheckPassword = controller.isCorrectPassword();
-        EXPECT_TRUE(CheckPassword);
+       Password = controller.isCorrectPassword();
+        EXPECT_TRUE(Password);
 }
 #endif // TST_TESTDIVISIONBYZERO_H
 ```
