@@ -74,8 +74,8 @@ TEST (Calculator, Door_close){
     MockIKeypad keypad;
     LockController controller=LockController(&keypad, &latch);
     EXPECT_CALL(latch,getDoorStatus()).Times(1);
-    bool CheckDoor = controller.isDoorOpen();
-    bool Check = CheckDoor;
+    bool Door = controller.isDoorOpen();
+    bool Check = Door;
     Check = false;
     EXPECT_FALSE(Check);
 }
@@ -84,10 +84,10 @@ TEST (Calculator, Door_close){
 TEST(Calculator, Door_open){
     MockILatch latch;
     MockIKeypad keypad;
-    bool CheckDoor;
+    bool Door;
     LockController controller=LockController(&keypad, &latch);
     EXPECT_CALL(latch, getDoorStatus()).Times(1);
-    CheckDoor = controller.isDoorOpen();
+    Door = controller.isDoorOpen();
     EXPECT_TRUE(CheckDoor);
 }
 
@@ -95,20 +95,20 @@ TEST(Calculator, Door_open){
 TEST(Calculator, latch_open){
     MockILatch latch;
     MockIKeypad keypad;
-    bool CheckDoor;
+    bool Door;
     LockController controller=LockController(&keypad, &latch);
     EXPECT_CALL(latch, getDoorStatus()).Times(1).WillOnce (Return(DoorStatus::OPEN));
-    CheckDoor = controller.isDoorOpen();
+    Door = controller.isDoorOpen();
     EXPECT_TRUE(CheckDoor);
 }
 
 //Тест 5
 TEST(Calculator, latch_close){
     MockIKeypad keypad;
-        MockILatch latch;
-        LockController lc = LockController(&keypad, &latch);
-        EXPECT_CALL(latch, close())//err.Times(1).WillOnce(Return(DoorStatus::CLOSE));
-        EXPECT_EQ(lc.lockDoor(), DoorStatus::CLOSE);
+    MockILatch latch;
+    LockController lc = LockController(&keypad, &latch);
+    EXPECT_CALL(latch, close())//err.Times(1).WillOnce(Return(DoorStatus::CLOSE));
+    EXPECT_EQ(lc.lockDoor(), DoorStatus::CLOSE);
 }
 
 //Тест 6
